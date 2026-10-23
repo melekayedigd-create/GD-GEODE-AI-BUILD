@@ -1,0 +1,66 @@
+{
+	"geode": "5.11.2",
+	"gd": {
+		"android": "2.2081",
+		"win": "2.2081"
+	},
+	"id": "myriam.ai-level-builder",
+	"name": "AI Level Builder",
+	"version": "v1.0.0",
+	"developer": "Myriam",
+	"description": "Describe a level, and an AI builds it in the editor for you.",
+	"tags": ["editor", "enhancement"],
+	"dependencies": {
+		"geode.node-ids": ">=v1.0.0"
+	},
+	"settings": {
+		"ai-header": {
+			"type": "title",
+			"name": "AI Connection"
+		},
+		"provider": {
+			"type": "string",
+			"default": "gemini",
+			"name": "AI Provider",
+			"description": "Which AI to use. <cg>gemini</c> has a free API key from Google AI Studio. <cy>custom</c> = any OpenAI-compatible server (Groq, OpenRouter, LM Studio...).",
+			"one-of": ["gemini", "claude", "openai", "custom"]
+		},
+		"api-key": {
+			"type": "string",
+			"default": "",
+			"name": "API Key",
+			"description": "Your key for the provider above. It stays on this device."
+		},
+		"model": {
+			"type": "string",
+			"default": "",
+			"name": "Model (optional)",
+			"description": "Leave empty for the default: gemini-3.6-flash / claude-sonnet-5-5 / gpt-4o. Change it if the default stops working."
+		},
+		"custom-url": {
+			"type": "string",
+			"default": "https://api.groq.com/openai/v1/chat/completions",
+			"name": "Custom URL",
+			"description": "Only used when the provider is <cy>custom</c>. Full chat-completions URL."
+		},
+		"build-header": {
+			"type": "title",
+			"name": "Building"
+		},
+		"place-at": {
+			"type": "string",
+			"default": "after-last-object",
+			"name": "Place Level At",
+			"description": "<cg>after-last-object</c> adds the build after what's already in your level. <cy>level-start</c> starts at the very beginning.",
+			"one-of": ["after-last-object", "level-start"]
+		},
+		"max-objects": {
+			"type": "int",
+			"default": 400,
+			"min": 10,
+			"max": 3000,
+			"name": "Max Objects",
+			"description": "Safety limit on how many objects one build can place."
+		}
+	}
+}
